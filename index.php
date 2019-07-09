@@ -52,4 +52,14 @@
         echo "$product->title <br/>";
     }
     echo "</p>";
+
+    /** Prepared Statements: Rows Count */
+    $sql = "SELECT * FROM products";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute();
+    $products = $stmt->fetchAll(PDO::FETCH_OBJ);
+    $num_rows = $stmt->rowCount();
+    echo "<p>";
+    echo "$num_rows rows <br/>";
+    echo "</p>";
 ?>
