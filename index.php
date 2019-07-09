@@ -27,4 +27,16 @@
         echo $row->title . "<br/>";
     }
     echo "</p>";
+
+    /** Prepared Statements */
+    $sql = "SELECT * FROM products WHERE id = ?";
+    $stmt = $pdo->prepare($sql);
+    $id = 1;
+    $stmt->execute([$id]);
+    $products = $stmt->fetchAll(PDO::FETCH_OBJ);
+    echo "<p>";
+    foreach($products as $product){
+        echo "$product->title <br/>";
+    }
+    echo "</p>";
 ?>
